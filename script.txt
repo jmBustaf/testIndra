@@ -1,0 +1,23 @@
+CREATE DATABASE test;
+
+-- Conectar a la base de datos "test"
+\c test;
+
+-- Crear la tabla "usuario"
+CREATE TABLE usuario (
+  id serial PRIMARY KEY,
+  nombre varchar(255) NOT NULL,
+  apellido varchar(255) NOT NULL,
+  correo varchar(255) UNIQUE NOT NULL,
+  contrasena varchar(255) NOT NULL
+);
+
+-- Crear la tabla "tarea"
+CREATE TABLE tarea (
+  id serial PRIMARY KEY,
+  nombre varchar(255) NOT NULL,
+  descripcion text,
+  fechaCreacion date NOT NULL,
+  fechaEjecucion date,
+  usuarioId integer REFERENCES usuario(id)
+);
